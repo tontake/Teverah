@@ -1,0 +1,12 @@
+/*header*/
+   
+    .myhead{
+        height:600px;
+        width:500px;
+        background :url('hero.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+       
+       
+   }
