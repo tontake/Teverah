@@ -54,33 +54,34 @@ $logurl=$gClient->createAuthUrl();
                     <h3>TEVERAH</h3>
                     <form id="validation" method="POST" action="teverah">
                         <div class="form-group" >
-                            <input type="text" class="form-control" id="user" placeholder="Your Email or Username" value="" required />
+                            <input type="text" class="form-control" id="user" placeholder="Your Email or Username" name="username" value="" required />
 							
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" id="pwd" placeholder="Your Password " value="" required  />
+                            <input type="password" class="form-control" id="pwd" placeholder="Your Password "name="password" value="" required  />
 							
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btnSubmit" value="Login" />
 							
                         </div>
-						<div class="form-group">
+						         <div class="form-group">
 
                             <a href="#" class="myor" value="Login">OR</a>
                         </div>
-						<div class="form-group">
-                            <input type="submit" class="btnSubmit" value="Create Account" />
+						
+                        </form>
+                        <div class="form-group">
+                            <input type="submit"onclick="window.location='<?php echo "signup"; ?>'" class="btnSubmit" value="Create Account" />
 							
                         </div>
-						
-						
 						
                         <div class="form-group">
 
                             <a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
                         </div>
-                    </form>
+                    
+                    
 					 <button class="mybtn " onclick="window.location='<?php echo $logurl; ?>'"><i class="fa fa-google-plus">
                                  </i> Signup using Google
                                 </button>

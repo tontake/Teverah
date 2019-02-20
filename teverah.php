@@ -7,6 +7,38 @@ $dbname = "Teverah";
 $first="";
 $last="";
 $Email="";
+$ID="";
+if(isset($_POST['username'])&& !empty($_POST['password']) ){
+    $user=$_POST['username'];
+    $pass=$_POST['password'];
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }  
+    $sql1 = "SELECT ID,username FROM login WHERE password='$pass'";
+    $result = $conn->query($sql1);
+    
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+        if($user==$row['username']){
+
+        
+        $ID=$row['ID'];
+            //echo "login successfully";
+        }
+        
+        
+        
+        }
+       
+    }
+    else{
+        header("Location:/teverah");
+    }
+    $conn->close();
+}
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -15,7 +47,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT ID, First,Last,Email FROM credentials";
+$sql = "SELECT First,Last,Email FROM credentials WHERE MyID='$ID'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -26,7 +58,8 @@ if ($result->num_rows > 0) {
         $Email=$row['Email'];
     }
 } else {
-    echo "0 results";
+   // echo "error wrong credentials";
+   header("Location:/teverah");
 }
 
 
@@ -86,7 +119,7 @@ if ($result->num_rows > 0) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="profile-head">
                                     <h5>
                                         <?php echo $first .$last;?>
@@ -97,18 +130,24 @@ if ($result->num_rows > 0) {
                                     <p class="proile-rating">RANKINGS : <span>8/10</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Credentials</a>
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="" role="tab" aria-controls="home" aria-selected="true">Credentials</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Devices</a>
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="add" role="tab" aria-controls="profile" aria-selected="false">Devices</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn btn-success" name="btnAddMore" value="Edit Profile"/>
+                        <button type="button" class="profile-edit-btn btn-success" data-toggle="modal" data-target="#exampleModalCenter" >Add Devices</button>
                     </div>
+                    <div class="col-md-2">
+                        <button type="button" class="profile-edit-btn btn-success" data-toggle="modal" data-target="#exampleModalCenter" >Edit Profile</button>
+                    </div>
+                    <!-- Modal -->
+
                 </div>
+                
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">

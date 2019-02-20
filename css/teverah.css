@@ -26,8 +26,9 @@ body{
     background: #212529b8;
 }
 .profile-edit-btn{
-	padding:10px;
-	border:solid 2px red;
+	padding:5px;
+    border:solid 1px red;
+    border-radius:3px;
 	
 }
 .profile-img .file input {
